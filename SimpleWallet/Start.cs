@@ -336,10 +336,10 @@ namespace SimpleWallet
      //               lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parse.blocks));
                     //MessageBox.Show(parse.blocks);
 
-             //       String dataHeight = "";
-             //       dataHeight = api.getNetworkHeight();
-              //      dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
-             //       lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
+                    String dataHeight = "";
+                    dataHeight = api.getNetworkHeight();
+                    dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
+                    lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
 
                     //block time
                     String curr = parse.besttime;
