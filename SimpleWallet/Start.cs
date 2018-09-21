@@ -181,6 +181,13 @@ namespace SimpleWallet
 
             lbBestHash.Invoke(new Action(() => lbBestHash.Text = bestHash));
 
+            String dataHeight = "";
+            dataHeight = api.getNetworkHeight();
+            dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
+            int nHeight = Convert.ToInt32(parseHeight.blocks);
+
+            lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
+
             //block time
             String curr = bestTime;
             if (!String.IsNullOrEmpty(curr))
@@ -288,7 +295,7 @@ namespace SimpleWallet
                     data = api.getNetworkHeight();
                     dynamic parse = JsonConvert.DeserializeObject<Types.Info>(data);
                     int nHeight = Convert.ToInt32(parse.blocks);
-                    if (bestHeight + 1 == nHeight || shouldGetTransaction)
+                    if (bestHeight + 1 == nHeight || shouldGetTransaction) 
                     {
                         data = api.getAllData(Types.GetAllDataType.WITH_TRANSACTIONS);
                         shouldGetTransaction = false;
@@ -326,6 +333,13 @@ namespace SimpleWallet
 
                     //block hash
                     lbBestHash.Invoke(new Action(() => lbBestHash.Text = parse.bestblockhash));
+     //               lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parse.blocks));
+                    //MessageBox.Show(parse.blocks);
+
+             //       String dataHeight = "";
+             //       dataHeight = api.getNetworkHeight();
+              //      dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
+             //       lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
 
                     //block time
                     String curr = parse.besttime;
@@ -458,7 +472,7 @@ namespace SimpleWallet
         void populateMasternodeList(List<Types.MasternodeDetail> mns)
         {
             List<Types.MasternodeDetailConverted> mnc = ConvertMasternodeDetail(mns);
-
+            
             dtgGlobalMN.Invoke(new Action(() =>
                 {
                     dtgGlobalMN.AutoGenerateColumns = true;
@@ -470,7 +484,7 @@ namespace SimpleWallet
 
         List<Types.MasternodeDetailConverted> ConvertMasternodeDetail(List<Types.MasternodeDetail> mnd)
         {
-            List<Types.MasternodeDetailConverted> rtn = new List<Types.MasternodeDetailConverted>();
+            List<Types.MasternodeDetailConverted> rtn = new List<Types.MasternodeDetailConverted>();    
             foreach (Types.MasternodeDetail m in mnd)
             {
                 rtn.Add(new Types.MasternodeDetailConverted(m.rank.ToString(), m.addr, m.version.ToString(), m.status,
@@ -478,6 +492,7 @@ namespace SimpleWallet
                    UnixTimeStampToDateTime(m.lastseen).ToString("yyyy/MM/dd HH:mm:ss"),
                    UnixTimeStampToDateTime(m.lastpaid).ToString("yyyy/MM/dd HH:mm:ss"),
                    m.txhash, m.ip));
+ //               Console.WriteLine(m.ip);
             }
             return rtn;
         }
@@ -754,7 +769,7 @@ namespace SimpleWallet
             try
             {
                 dynamic parse = JsonConvert.DeserializeObject<Types.MasternodeList>(mns);
-                rtn = parse.masternodelist;
+                rtn = parse.masternodelist;  
             }
             catch (Exception ex)
             { }
@@ -850,7 +865,7 @@ namespace SimpleWallet
         void populateMasternodes()
         {
             String mnLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem\\masternode.conf";
+                        "\\Anon\\masternode.conf";
 
             mn = api.getMasternodes();
 
@@ -1337,7 +1352,8 @@ namespace SimpleWallet
         {
             String text = Types.version + "\n\n";
 
-            text += "Copyright (c) 2016-2018 Pit ceo@snowgem.org\n" +
+            text += "Copyright (c) 2018 0x6b656e https://nwcoinpool.com \n" +
+                "Copyright (c) 2016-2018 Pit ceo@snowgem.org\n" +
                 "\n" +
                 "Permission is hereby granted, free of charge, to any person obtaining a copy" +
                 " of this software and associated documentation files (the \"Software\"), to deal" +
@@ -2407,7 +2423,7 @@ Are you sure?", @"Reopen to scan the wallet", MessageBoxButtons.YesNo);
                         {
                             text = "Enable";
                         }
-                        ctxMenu.MenuItems.Add(new CustomMenuItem("Copy snowgem.conf data", ctxMenu_CopyXSGConfigure, rightClick.type));
+                        ctxMenu.MenuItems.Add(new CustomMenuItem("Copy anon.conf data", ctxMenu_CopyXSGConfigure, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem("Copy alias data", ctxMenu_CopyMNAlias, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem("Edit alias data", ctxMenu_Edit, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem(text, ctxMenu_StatusAlias, rightClick.type));
