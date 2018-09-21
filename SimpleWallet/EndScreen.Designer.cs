@@ -51,13 +51,13 @@
             this.label2.Location = new System.Drawing.Point(132, 261);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 15);
+            this.label2.Size = new System.Drawing.Size(141, 15);
             this.label2.TabIndex = 1;
-            this.label2.Text = "SnowGem is shutting down...";
+            this.label2.Text = "ANON is shutting down...";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::SimpleWallet.Properties.Resources.logo_500;
+            this.pictureBox1.BackgroundImage = global::SimpleWallet.Properties.Resources.anon;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(93, 7);

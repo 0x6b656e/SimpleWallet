@@ -32,6 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpOverview = new System.Windows.Forms.TabPage();
+            this.lbMasternodesEnabled = new SimpleWallet.TransparentLabel();
+            this.transparentLabel11 = new SimpleWallet.TransparentLabel();
+            this.transparentLabel8 = new SimpleWallet.TransparentLabel();
+            this.lbMasternodeCount = new SimpleWallet.TransparentLabel();
+            this.transparentLabel9 = new SimpleWallet.TransparentLabel();
+            this.lbBestHeight = new SimpleWallet.TransparentLabel();
+            this.transparentLabel6 = new SimpleWallet.TransparentLabel();
             this.pbTransaction4 = new System.Windows.Forms.PictureBox();
             this.pbTransaction3 = new System.Windows.Forms.PictureBox();
             this.pbTransaction2 = new System.Windows.Forms.PictureBox();
@@ -167,6 +174,7 @@
             this.addressBookBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.masternodeListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.typesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tcMain.SuspendLayout();
             this.tpOverview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTransaction4)).BeginInit();
@@ -203,6 +211,7 @@
             this.tcMain.Controls.Add(this.tpReceive);
             this.tcMain.Controls.Add(this.tpTransactions);
             this.tcMain.Controls.Add(this.tpMasternode);
+            this.tcMain.Controls.Add(this.tabPage1);
             this.tcMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcMain.ImageList = this.imgList;
             this.tcMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -216,11 +225,19 @@
             this.tcMain.Size = new System.Drawing.Size(856, 495);
             this.tcMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tcMain.TabIndex = 5;
+            this.tcMain.Visible = false;
             // 
             // tpOverview
             // 
-            this.tpOverview.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tpOverview.BackgroundImage")));
+            this.tpOverview.BackgroundImage = global::SimpleWallet.Properties.Resources.wallet_bg;
             this.tpOverview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tpOverview.Controls.Add(this.lbMasternodesEnabled);
+            this.tpOverview.Controls.Add(this.transparentLabel11);
+            this.tpOverview.Controls.Add(this.transparentLabel8);
+            this.tpOverview.Controls.Add(this.lbMasternodeCount);
+            this.tpOverview.Controls.Add(this.transparentLabel9);
+            this.tpOverview.Controls.Add(this.lbBestHeight);
+            this.tpOverview.Controls.Add(this.transparentLabel6);
             this.tpOverview.Controls.Add(this.pbTransaction4);
             this.tpOverview.Controls.Add(this.pbTransaction3);
             this.tpOverview.Controls.Add(this.pbTransaction2);
@@ -264,6 +281,88 @@
             this.tpOverview.TabIndex = 0;
             this.tpOverview.Text = "Overview";
             this.tpOverview.UseVisualStyleBackColor = true;
+            // 
+            // lbMasternodesEnabled
+            // 
+            this.lbMasternodesEnabled.AutoSize = true;
+            this.lbMasternodesEnabled.BackColor = System.Drawing.Color.Transparent;
+            this.lbMasternodesEnabled.Location = new System.Drawing.Point(157, 334);
+            this.lbMasternodesEnabled.Name = "lbMasternodesEnabled";
+            this.lbMasternodesEnabled.Opacity = 0;
+            this.lbMasternodesEnabled.Size = new System.Drawing.Size(0, 15);
+            this.lbMasternodesEnabled.TabIndex = 21;
+            this.lbMasternodesEnabled.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // transparentLabel11
+            // 
+            this.transparentLabel11.AutoSize = true;
+            this.transparentLabel11.BackColor = System.Drawing.Color.Transparent;
+            this.transparentLabel11.Location = new System.Drawing.Point(9, 334);
+            this.transparentLabel11.Name = "transparentLabel11";
+            this.transparentLabel11.Opacity = 0;
+            this.transparentLabel11.Size = new System.Drawing.Size(131, 15);
+            this.transparentLabel11.TabIndex = 20;
+            this.transparentLabel11.Text = "Masternodes Enabled:";
+            this.transparentLabel11.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // transparentLabel8
+            // 
+            this.transparentLabel8.AutoSize = true;
+            this.transparentLabel8.BackColor = System.Drawing.Color.Transparent;
+            this.transparentLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.transparentLabel8.Location = new System.Drawing.Point(7, 289);
+            this.transparentLabel8.Name = "transparentLabel8";
+            this.transparentLabel8.Opacity = 0;
+            this.transparentLabel8.Size = new System.Drawing.Size(111, 20);
+            this.transparentLabel8.TabIndex = 19;
+            this.transparentLabel8.Text = "Network Info";
+            this.transparentLabel8.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // lbMasternodeCount
+            // 
+            this.lbMasternodeCount.AutoSize = true;
+            this.lbMasternodeCount.BackColor = System.Drawing.Color.Transparent;
+            this.lbMasternodeCount.Location = new System.Drawing.Point(157, 318);
+            this.lbMasternodeCount.Name = "lbMasternodeCount";
+            this.lbMasternodeCount.Opacity = 0;
+            this.lbMasternodeCount.Size = new System.Drawing.Size(0, 15);
+            this.lbMasternodeCount.TabIndex = 18;
+            this.lbMasternodeCount.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // transparentLabel9
+            // 
+            this.transparentLabel9.AutoSize = true;
+            this.transparentLabel9.BackColor = System.Drawing.Color.Transparent;
+            this.transparentLabel9.Location = new System.Drawing.Point(9, 318);
+            this.transparentLabel9.Name = "transparentLabel9";
+            this.transparentLabel9.Opacity = 0;
+            this.transparentLabel9.Size = new System.Drawing.Size(111, 15);
+            this.transparentLabel9.TabIndex = 17;
+            this.transparentLabel9.Text = "Masternode Count:";
+            this.transparentLabel9.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // lbBestHeight
+            // 
+            this.lbBestHeight.AutoSize = true;
+            this.lbBestHeight.BackColor = System.Drawing.Color.Transparent;
+            this.lbBestHeight.Location = new System.Drawing.Point(140, 402);
+            this.lbBestHeight.Name = "lbBestHeight";
+            this.lbBestHeight.Opacity = 0;
+            this.lbBestHeight.Size = new System.Drawing.Size(0, 15);
+            this.lbBestHeight.TabIndex = 16;
+            this.lbBestHeight.TransparentBackColor = System.Drawing.Color.Blue;
+            // 
+            // transparentLabel6
+            // 
+            this.transparentLabel6.AutoSize = true;
+            this.transparentLabel6.BackColor = System.Drawing.Color.Transparent;
+            this.transparentLabel6.Location = new System.Drawing.Point(8, 402);
+            this.transparentLabel6.Name = "transparentLabel6";
+            this.transparentLabel6.Opacity = 0;
+            this.transparentLabel6.Size = new System.Drawing.Size(112, 15);
+            this.transparentLabel6.TabIndex = 15;
+            this.transparentLabel6.Text = "Latest block height:";
+            this.transparentLabel6.TransparentBackColor = System.Drawing.Color.Blue;
             // 
             // pbTransaction4
             // 
@@ -814,8 +913,8 @@
             this.cbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUnit.FormattingEnabled = true;
             this.cbUnit.Items.AddRange(new object[] {
-            "XSG",
-            "mXSG"});
+            "ANON",
+            "mANON"});
             this.cbUnit.Location = new System.Drawing.Point(177, 103);
             this.cbUnit.Name = "cbUnit";
             this.cbUnit.Size = new System.Drawing.Size(100, 23);
@@ -1528,7 +1627,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(260, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(168, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1643,12 +1742,12 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::SimpleWallet.Properties.Resources.sng_main;
+            this.pictureBox1.BackgroundImage = global::SimpleWallet.Properties.Resources.anon;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.ErrorImage = global::SimpleWallet.Properties.Resources.sng_main;
-            this.pictureBox1.Location = new System.Drawing.Point(684, -2);
+            this.pictureBox1.ErrorImage = global::SimpleWallet.Properties.Resources.anon;
+            this.pictureBox1.Location = new System.Drawing.Point(761, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(168, 58);
+            this.pictureBox1.Size = new System.Drawing.Size(83, 53);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
@@ -1687,6 +1786,17 @@
             // 
             this.typesBindingSource.DataSource = typeof(SimpleWallet.Types);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tabPage1.BackgroundImage = global::SimpleWallet.Properties.Resources.anon_bg;
+            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(848, 461);
+            this.tabPage1.TabIndex = 7;
+            this.tabPage1.Text = "tabPage1";
+            // 
             // Start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1705,7 +1815,7 @@
             this.MaximizeBox = false;
             this.Name = "Start";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Snowgem Simple Wallet - Version 1.0.6";
+            this.Text = "ANON Simple Wallet - Version 0.1.0";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Start_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Start_FormClosed);
             this.Load += new System.EventHandler(this.Start_Load);
@@ -1884,5 +1994,13 @@
         private TransparentLabel transparentLabel7;
         private System.Windows.Forms.ToolStripMenuItem addPeersToolStripMenuItem;
         private System.Windows.Forms.Button btnClearMNCache;
+        private TransparentLabel transparentLabel6;
+        private TransparentLabel lbBestHeight;
+        private TransparentLabel lbMasternodeCount;
+        private TransparentLabel transparentLabel9;
+        private TransparentLabel transparentLabel8;
+        private TransparentLabel lbMasternodesEnabled;
+        private TransparentLabel transparentLabel11;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }

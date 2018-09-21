@@ -19,8 +19,8 @@ namespace SimpleWallet
     class Executor
     {
         Types type = new Types();
-        String daemond = "snowgemd.exe";
-        String cli = "snowgem-cli.exe";
+        String daemond = "anond.exe";
+        String cli = "anon-cli.exe";
         const String verifyingKey = "sprout-verifying.key";
         const String provingKey = "sprout-proving.key";
         String dataToGetSync = "";
@@ -373,14 +373,14 @@ namespace SimpleWallet
             //String file1Link = webLink + file1;
             //String file2Link = webLink + file2;
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            String file1Loc = appdata + "\\SnowgemParams\\" + file1;
-            String file2Loc = appdata + "\\SnowgemParams\\" + file2;
+            String file1Loc = appdata + "\\AnonParams\\" + file1;
+            String file2Loc = appdata + "\\AnonParams\\" + file2;
             //Int64 length = 0;
             //WebClient wc = new WebClient();
             //Stream response = null;
-            if (!Directory.Exists(appdata + "\\SnowgemParams"))
+            if (!Directory.Exists(appdata + "\\AnonParams"))
             {
-                Directory.CreateDirectory(appdata + "\\SnowgemParams");
+                Directory.CreateDirectory(appdata + "\\AnonParams");
                 return true;
             }
             if (!File.Exists(file1Loc) || !File.Exists(file2Loc))
@@ -444,7 +444,9 @@ namespace SimpleWallet
         {
             bool rtn = true;
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            String fileLoc = Path.GetTempPath() + "\\" + name;
+            //System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath);
+            //String fileLoc = Path.GetTempPath() + "\\" + name;
+            String fileLoc = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\" + name;
 
             try
             {
@@ -463,10 +465,10 @@ namespace SimpleWallet
 
         public bool downloadParams(String file, Types.DownloadFileType downloadType)
         {
-            String webLink = "https://snowgem.org/downloads/";
+            String webLink = "https://assets.anonfork.io/";
             String fileLink = webLink + file;
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            String fileLoc = appdata + "\\SnowgemParams\\" + file;
+            String fileLoc = appdata + "\\AnonParams\\" + file;
             Int64 length = 0;
             WebClient wc = new WebClient();
             Stream response = null;
@@ -483,7 +485,7 @@ namespace SimpleWallet
                     wc.DownloadProgressChanged += verifying_DownloadProgressChanged;
                     wc.DownloadFileCompleted += verifying_DownloadFileCompleted;
                 }
-                wc.DownloadFileAsync(new System.Uri(fileLink), appdata + "\\SnowgemParams\\" + file, true);
+                wc.DownloadFileAsync(new System.Uri(fileLink), appdata + "\\AnonParams\\" + file, true);
             return true;
         }
 

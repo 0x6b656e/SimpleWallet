@@ -11,6 +11,7 @@
     <AssemblyName>SimpleWallet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,9 +24,10 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>anonico_XtU_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -264,6 +266,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\wallet_bg.png" />
+    <None Include="Resources\anon_bg.png" />
+    <None Include="Resources\anon.png" />
+    <None Include="Resources\Screen-Shot-2018-06-01-at-7.43.02-PM.png" />
+    <None Include="Resources\anonymous-Bitcoin.jpg" />
     <None Include="Resources\background_bottom1.png" />
     <None Include="Resources\sng_main.png" />
     <None Include="Resources\background_bottom.png" />
@@ -273,6 +280,8 @@
     <None Include="Images\search_light.png" />
     <None Include="Images\search_dark.png" />
     <None Include="Images\shield.png" />
+    <Content Include="anonico_XtU_icon.ico" />
+    <Content Include="ILMergeOrder.txt" />
     <Content Include="logo.ico" />
     <None Include="Resources\splash.jpg" />
   </ItemGroup>
@@ -294,6 +303,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

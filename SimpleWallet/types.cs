@@ -53,18 +53,18 @@ namespace SimpleWallet
                                                   DaemonEventArgs e);
     public class Types
     {
-        public static String version = "SnowGem Simple Wallet - Version 2.0.1";
-        public static int time = 1524636720;
+        public static String version = "ANON Simple Wallet - Version 0.1.0";
+        public static int time = 1537415924;
         public static String dataLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem";
+                        "\\Anon";
         public static String simpleWalletLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem\\simplewallet";
+                        "\\Anon\\simplewallet";
         public static String mnLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem\\masternode.conf";
+                        "\\Anon\\masternode.conf";
         public static String cfLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                 + "\\Snowgem\\snowgem.conf";
+                 + "\\Anon\\anon.conf";
         public static String logLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                 + "\\Snowgem\\debug.log";
+                 + "\\Anon\\debug.log";
         public static String startCommandsFile = simpleWalletLocation + "\\commands.dat";
         public static String addressLabel = simpleWalletLocation + "\\addressLabel.dat";
         public static String mnCache = dataLocation + "\\mncache.dat";

@@ -162,7 +162,7 @@ namespace SimpleWallet
         Executor exec = Executor.Instance;
         public String currentDaemondStatus = "";
         public String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                 + "\\Snowgem\\";
+                 + "\\Anon\\";
         private static Api instance = null;
         private static readonly object padlock = new object();
 
@@ -223,14 +223,15 @@ namespace SimpleWallet
                 Directory.CreateDirectory(appdata);
             }
 
-            String filename = appdata + "\\snowgem.conf";
+            String filename = appdata + "\\anon.conf";
             if (!File.Exists(filename))
+            
             {
                 File.Create(filename).Close();
                 String rpcUser = "rpcuser=" + getRandomString(30);
                 String rpcPass = "rpcpassword=" + getRandomString(30);
-                String node = "addnode=explorer.snowgem.org\naddnode=insight.snowgem.org";
-                String port = "port=16113\nrpcport=16112\ntxindex=1";
+                String node = "addnode=149.202.74.156\naddnode=149.28.224.182";
+                String port = "port=33130\nrpcport=3130\ntxindex=1";
                 String finalStr = rpcUser + "\n" + rpcPass + "\n" + node + "\n" + port;
                 File.WriteAllText(filename, finalStr);
             }
@@ -238,6 +239,7 @@ namespace SimpleWallet
             {
                 String text = File.ReadAllText(filename);
                 if(!text.Contains("rpcuser"))
+                
                 {
                     String rpcUser = "rpcuser=" + getRandomString(30);
                     text += "\n" + rpcUser;
@@ -260,8 +262,8 @@ namespace SimpleWallet
         {
             Types.ConfigureResult result = Types.ConfigureResult.OK;
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                             + "\\Snowgem";
-            String confFile = appdata + "\\snowgem.conf";
+                             + "\\Anon";
+            String confFile = appdata + "\\anon.conf";
             String mnFile = appdata + "\\masternode.conf";
             if (aliasName.StartsWith("#"))
             {
@@ -291,7 +293,7 @@ namespace SimpleWallet
                         {
                             text.RemoveAt(index);
                         }
-                        text.Add("port=16113");
+                        text.Add("port=33130");
                         index = text.FindIndex(x => x.StartsWith("listen"));
                         if (index != -1)
                         {
@@ -331,7 +333,7 @@ namespace SimpleWallet
                                 mns.RemoveAt(index);
                             }
                         }
-                        mns.Add(new Types.Masternode(status, aliasName, IP + ":16113", privKey, txHash, txIndex));
+                        mns.Add(new Types.Masternode(status, aliasName, IP + ":33130", privKey, txHash, txIndex));
 
                         List<String> data = new List<string>();
                         foreach(Types.Masternode m in mns)
@@ -355,8 +357,8 @@ namespace SimpleWallet
         {
             Types.ConfigureResult result = Types.ConfigureResult.OK;
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                             + "\\Snowgem";
-            String confFile = appdata + "\\snowgem.conf";
+                             + "\\Anon";
+            String confFile = appdata + "\\anon.conf";
             String mnFile = appdata + "\\masternode.conf";
 
             if(aliasName.StartsWith("#"))
@@ -383,7 +385,7 @@ namespace SimpleWallet
                         {
                             text.RemoveAt(index);
                         }
-                        text.Add("port=16113");
+                        text.Add("port=33130");
                         index = text.FindIndex(x => x.StartsWith("listen"));
                         if (index != -1)
                         {
@@ -461,7 +463,7 @@ namespace SimpleWallet
         {
             List<Types.Masternode> rtn = new List<Types.Masternode>();
             String appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                 + "\\Snowgem";
+                 + "\\Anon";
             String mnFile = appdata + "\\masternode.conf";
 
             List<String> data = File.ReadAllLines(mnFile).ToList();
@@ -492,9 +494,9 @@ namespace SimpleWallet
         public Dictionary<String, String> startWallet(String command)
         {
             Dictionary<String, String> strDict = new Dictionary<String, String>();
-            if(!File.Exists("snowgem.exe"))
+            if(!File.Exists("anond.exe"))
             {
-                strDict["message"] = "Could not find \"snowgem.exe\" file in the folder";
+                strDict["message"] = "Could not find \"anond.exe\" file in the folder";
                 strDict["result"] = "fail";
             }
             String result = Task.Run(() => exec.executeStart(command)).Result;
@@ -656,6 +658,23 @@ namespace SimpleWallet
             return ret;
         }
 
+        public String getMNCount()
+        {
+            String data = "";
+            List<String> command = new List<String> { "masternode ", "count" };
+            String ret = Task.Run(() => exec.executeOthers(command, data)).Result;
+            return ret;
+        }
+
+        public String getMNEnabled()
+        {
+            String data = "";
+            List<String> command = new List<String> { "masternode ", "count ", "enabled" };
+            String ret = Task.Run(() => exec.executeOthers(command, data)).Result;
+            return ret;
+        }
+
+
         public String getMNOutputs()
         {
             String data = "";
@@ -667,7 +686,7 @@ namespace SimpleWallet
         public String getMasternodeList()
         {
             String data = "";
-            List<String> command = new List<String> { "masternode ", "list" };
+            List<String> command = new List<String> { "masternodelist ", "full" };
             String ret = Task.Run(() => exec.executeMasternode(command, data)).Result;
             return ret;
         }
@@ -685,7 +704,7 @@ namespace SimpleWallet
             String data = "";
             List<String> command = new List<String> { "getaccount ", wallet };
             String ret = Task.Run(() => exec.executeBalance(command, data)).Result;
-            if (ret.Contains("Invalid Snowgem address"))
+            if (ret.Contains("Invalid ANON address"))
             {
                 strDict["result"] = "fail";
             }
@@ -717,7 +736,7 @@ namespace SimpleWallet
                 {
                     String filename = dialog.FileName;
                     String walletDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem\\wallet.dat";
+                        "\\Anon\\wallet.dat";
                     File.Copy(walletDir, filename, true);
                     strDict["message"] = "Backup success";
                     strDict["result"] = "success";

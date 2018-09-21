@@ -49,10 +49,14 @@ namespace SimpleWallet
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.CreateNoWindow = false;
                     startInfo.UseShellExecute = true;
-                    startInfo.FileName = Path.GetTempPath() + "\\SimpleWallet.exe";
+                    //startInfo.FileName = Path.GetTempPath() + "\\SimpleWallet_new.exe";
+                    //MessageBox.Show(Path.GetTempPath() + "\\SimpleWallet_new.exe");
+
+                    startInfo.FileName = System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\SimpleWallet_new.exe";
+                    MessageBox.Show(System.IO.Path.GetDirectoryName(System.Windows.Forms.Application.ExecutablePath) + "\\SimpleWallet_new.exe");
                     Process.Start(startInfo);
                 }
-                catch (Exception ex) { }
+                catch (Exception ex) {  }
                 this.Invoke(new Action(() => this.Close()));
             }
         }
@@ -61,7 +65,7 @@ namespace SimpleWallet
         {
             ((Button)sender).Enabled = false;
             pbDownloading.Visible = true;
-            Task.Run(() => exec.downloadNewVersion(version.link, "SimpleWallet.exe")).Wait();
+            Task.Run(() => exec.downloadNewVersion(version.link, "SimpleWallet_new.exe")).Wait();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -32,10 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.pbProcess = new System.Windows.Forms.ProgressBar();
             this.ttSplash = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbLog = new System.Windows.Forms.Label();
             this.lbCurrentStatus = new SimpleWallet.TransparentLabel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // pbProcess
@@ -49,17 +51,6 @@
             this.pbProcess.TabIndex = 3;
             this.pbProcess.Visible = false;
             this.pbProcess.MouseHover += new System.EventHandler(this.pbProcess_MouseHover);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::SimpleWallet.Properties.Resources.splash;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(668, 356);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
             // 
             // lbLog
             // 
@@ -83,6 +74,28 @@
             this.lbCurrentStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbCurrentStatus.TransparentBackColor = System.Drawing.Color.Blue;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(668, 356);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
+            this.pictureBox2.BackgroundImage = global::SimpleWallet.Properties.Resources.anon;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(177, 23);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(326, 281);
+            this.pictureBox2.TabIndex = 7;
+            this.pictureBox2.TabStop = false;
+            // 
             // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -90,6 +103,7 @@
             this.BackColor = System.Drawing.Color.Gray;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(668, 356);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lbLog);
             this.Controls.Add(this.lbCurrentStatus);
             this.Controls.Add(this.pbProcess);
@@ -106,6 +120,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SplashScreen_FormClosed);
             this.Load += new System.EventHandler(this.SplashScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,5 +133,6 @@
         private TransparentLabel lbCurrentStatus;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbLog;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

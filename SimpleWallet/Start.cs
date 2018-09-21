@@ -124,7 +124,7 @@ namespace SimpleWallet
             dtgMasternode.Columns[4].Width = dtgMasternode.Width * 3 / 10;
             dtgMasternode.Columns[4].ReadOnly = true;
             dtgMasternode.Columns[5].HeaderText = "Index ID";
-            dtgMasternode.Columns[5].Width = dtgMasternode.Width - dtgMasternode.Width *(3 / 5 + 3 / 10);
+            dtgMasternode.Columns[5].Width = dtgMasternode.Width - dtgMasternode.Width * (3 / 5 + 3 / 10);
             dtgMasternode.Columns[5].ReadOnly = true;
 
             dtgGlobalMN.Columns[0].HeaderText = "Rank";
@@ -172,7 +172,7 @@ namespace SimpleWallet
 
         private void Start_Load(object sender, EventArgs e)
         {
-            if(!Directory.Exists(Types.simpleWalletLocation))
+            if (!Directory.Exists(Types.simpleWalletLocation))
             {
                 Directory.CreateDirectory(Types.simpleWalletLocation);
             }
@@ -180,6 +180,13 @@ namespace SimpleWallet
             closeTmr.Start();
 
             lbBestHash.Invoke(new Action(() => lbBestHash.Text = bestHash));
+
+            String dataHeight = "";
+            dataHeight = api.getNetworkHeight();
+            dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
+            int nHeight = Convert.ToInt32(parseHeight.blocks);
+
+            lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
 
             //block time
             String curr = bestTime;
@@ -326,6 +333,13 @@ namespace SimpleWallet
 
                     //block hash
                     lbBestHash.Invoke(new Action(() => lbBestHash.Text = parse.bestblockhash));
+                    //               lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parse.blocks));
+                    //MessageBox.Show(parse.blocks);
+
+                    String dataHeight = "";
+                    dataHeight = api.getNetworkHeight();
+                    dynamic parseHeight = JsonConvert.DeserializeObject<Types.Info>(dataHeight);
+                    lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parseHeight.blocks));
 
                     //block time
                     String curr = parse.besttime;
@@ -460,10 +474,10 @@ namespace SimpleWallet
             List<Types.MasternodeDetailConverted> mnc = ConvertMasternodeDetail(mns);
 
             dtgGlobalMN.Invoke(new Action(() =>
-                {
-                    dtgGlobalMN.AutoGenerateColumns = true;
-                    dtgGlobalMN.DataSource = new BindingList<Types.MasternodeDetailConverted>(mnc);
-                }));
+            {
+                dtgGlobalMN.AutoGenerateColumns = true;
+                dtgGlobalMN.DataSource = new BindingList<Types.MasternodeDetailConverted>(mnc);
+            }));
 
 
         }
@@ -478,6 +492,7 @@ namespace SimpleWallet
                    UnixTimeStampToDateTime(m.lastseen).ToString("yyyy/MM/dd HH:mm:ss"),
                    UnixTimeStampToDateTime(m.lastpaid).ToString("yyyy/MM/dd HH:mm:ss"),
                    m.txhash, m.ip));
+                //               Console.WriteLine(m.ip);
             }
             return rtn;
         }
@@ -794,7 +809,7 @@ namespace SimpleWallet
                 catch (Exception ex) { }
             }
 
-            temp.Sort(delegate(Types.MasternodeDetail x, Types.MasternodeDetail y)
+            temp.Sort(delegate (Types.MasternodeDetail x, Types.MasternodeDetail y)
             {
                 return x.rank.CompareTo(y.rank);
             });
@@ -850,16 +865,16 @@ namespace SimpleWallet
         void populateMasternodes()
         {
             String mnLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-                        "\\Snowgem\\masternode.conf";
+                        "\\Anon\\masternode.conf";
 
             mn = api.getMasternodes();
 
             if (mn.Count > 0)
             {
                 dtgMasternode.Invoke(new Action(() =>
-                    {
-                        dtgMasternode.DataSource = mn;
-                    }));
+                {
+                    dtgMasternode.DataSource = mn;
+                }));
             }
         }
 
@@ -1166,7 +1181,7 @@ namespace SimpleWallet
                     Message errMsg = new Message("Error", err);
                     errMsg.ShowDialog();
                 }
-                else if(err.Contains("Could not find any non-coinbase UTXOs to spend"))
+                else if (err.Contains("Could not find any non-coinbase UTXOs to spend"))
                 {
                     err += "\nGo to https://snowgem.org/faq#shieldcoinbase to get help.";
                     Message errMsg = new Message("Error", err);
@@ -1337,7 +1352,8 @@ namespace SimpleWallet
         {
             String text = Types.version + "\n\n";
 
-            text += "Copyright (c) 2016-2018 Pit ceo@snowgem.org\n" +
+            text += "Copyright (c) 2018 0x6b656e https://nwcoinpool.com \n" +
+                "Copyright (c) 2016-2018 Pit ceo@snowgem.org\n" +
                 "\n" +
                 "Permission is hereby granted, free of charge, to any person obtaining a copy" +
                 " of this software and associated documentation files (the \"Software\"), to deal" +
@@ -1427,9 +1443,9 @@ namespace SimpleWallet
         void tsText(TransparentLabel tl, String text)
         {
             tl.Invoke(new Action(() =>
-                {
-                    tl.Text = text;
-                }));
+            {
+                tl.Text = text;
+            }));
         }
 
         void pbVisible(PictureBox pb, bool status)
@@ -1604,11 +1620,11 @@ Are you sure?", @"Reopen to scan the wallet", MessageBoxButtons.YesNo);
                 }
                 else
                 {
-                    foreach(Types.Masternode m in mn)
+                    foreach (Types.Masternode m in mn)
                     {
                         outputList.RemoveAll(op => op.txhash.Contains(m.txHash));
                     }
-                    
+
                     for (int i = outputList.Count - 1; i >= 0; i--)
                     {
                         Masternode mnForm = new Masternode("Outputs " + (outputList.Count - i), outputList[i].txhash + " " + outputList[i].outputidx);
@@ -2100,7 +2116,7 @@ Are you sure?", @"Reopen to scan the wallet", MessageBoxButtons.YesNo);
                     }
 
                     bool isDisableAll = false;
-                    if(countEnable == 1)
+                    if (countEnable == 1)
                     {
                         isDisableAll = true;
                     }
@@ -2407,7 +2423,7 @@ Are you sure?", @"Reopen to scan the wallet", MessageBoxButtons.YesNo);
                         {
                             text = "Enable";
                         }
-                        ctxMenu.MenuItems.Add(new CustomMenuItem("Copy snowgem.conf data", ctxMenu_CopyXSGConfigure, rightClick.type));
+                        ctxMenu.MenuItems.Add(new CustomMenuItem("Copy anon.conf data", ctxMenu_CopyXSGConfigure, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem("Copy alias data", ctxMenu_CopyMNAlias, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem("Edit alias data", ctxMenu_Edit, rightClick.type));
                         ctxMenu.MenuItems.Add(new CustomMenuItem(text, ctxMenu_StatusAlias, rightClick.type));
@@ -2486,7 +2502,7 @@ Are you sure?", @"Reopen to scan the wallet", MessageBoxButtons.YesNo);
         {
             AddPeers ap = new AddPeers();
             ap.ShowDialog();
-            if(ap.isAdded)
+            if (ap.isAdded)
             {
                 DialogResult dialogResult = MessageBox.Show("Do you want to restart the wallet?", "Reopen to load new peers", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)

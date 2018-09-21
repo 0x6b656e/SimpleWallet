@@ -132,8 +132,9 @@ namespace SimpleWallet
             }
 
             String walletDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) +
-            "\\Snowgem\\wallet.dat";
+            "\\Anon\\wallet.dat";
 
+            //MessageBox.Show(walletDir);
             if (!File.Exists(walletDir))
             {
                 MessageBox.Show("Remember to backup your wallet.dat file and private keys before using the wallet", "ATTENTION!!!");
@@ -146,7 +147,7 @@ namespace SimpleWallet
         {
             //check new version>
             WebClient client = new WebClient();
-            String downloadedString = client.DownloadString("https://data.snowgem.org/simplewallet/version.json");
+            String downloadedString = client.DownloadString("https://raw.githubusercontent.com/0x6b656e/SimpleWallet/master/version.json");
             Types.Version parse = JsonConvert.DeserializeObject<Types.Version>(downloadedString);
             if (Types.time < parse.time)
             {
@@ -254,7 +255,7 @@ namespace SimpleWallet
 
         void ErrorOccurs(object sender, DeamonErrorEventArgs e)
         {
-            if (!e.errMessage.Contains("Snowgem is probably already running"))
+            if (!e.errMessage.Contains("ANON is probably already running"))
             {
                 api.stopWallet();
 
@@ -318,6 +319,5 @@ namespace SimpleWallet
         {
 
         }
-
     }
 }
