@@ -295,7 +295,7 @@ namespace SimpleWallet
                     data = api.getNetworkHeight();
                     dynamic parse = JsonConvert.DeserializeObject<Types.Info>(data);
                     int nHeight = Convert.ToInt32(parse.blocks);
-                    if (bestHeight + 1 == nHeight || shouldGetTransaction)
+                    if (bestHeight + 1 == nHeight || shouldGetTransaction) 
                     {
                         data = api.getAllData(Types.GetAllDataType.WITH_TRANSACTIONS);
                         shouldGetTransaction = false;
@@ -333,7 +333,7 @@ namespace SimpleWallet
 
                     //block hash
                     lbBestHash.Invoke(new Action(() => lbBestHash.Text = parse.bestblockhash));
-                    //               lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parse.blocks));
+     //               lbBestHeight.Invoke(new Action(() => lbBestHeight.Text = parse.blocks));
                     //MessageBox.Show(parse.blocks);
 
                     String dataHeight = "";
@@ -472,7 +472,7 @@ namespace SimpleWallet
         void populateMasternodeList(List<Types.MasternodeDetail> mns)
         {
             List<Types.MasternodeDetailConverted> mnc = ConvertMasternodeDetail(mns);
-
+            
             dtgGlobalMN.Invoke(new Action(() =>
             {
                 dtgGlobalMN.AutoGenerateColumns = true;
@@ -484,7 +484,7 @@ namespace SimpleWallet
 
         List<Types.MasternodeDetailConverted> ConvertMasternodeDetail(List<Types.MasternodeDetail> mnd)
         {
-            List<Types.MasternodeDetailConverted> rtn = new List<Types.MasternodeDetailConverted>();
+            List<Types.MasternodeDetailConverted> rtn = new List<Types.MasternodeDetailConverted>();    
             foreach (Types.MasternodeDetail m in mnd)
             {
                 rtn.Add(new Types.MasternodeDetailConverted(m.rank.ToString(), m.addr, m.version.ToString(), m.status,
@@ -492,7 +492,7 @@ namespace SimpleWallet
                    UnixTimeStampToDateTime(m.lastseen).ToString("yyyy/MM/dd HH:mm:ss"),
                    UnixTimeStampToDateTime(m.lastpaid).ToString("yyyy/MM/dd HH:mm:ss"),
                    m.txhash, m.ip));
-                //               Console.WriteLine(m.ip);
+ //               Console.WriteLine(m.ip);
             }
             return rtn;
         }
@@ -769,7 +769,7 @@ namespace SimpleWallet
             try
             {
                 dynamic parse = JsonConvert.DeserializeObject<Types.MasternodeList>(mns);
-                rtn = parse.masternodelist;
+                rtn = parse.masternodelist;  
             }
             catch (Exception ex)
             { }
